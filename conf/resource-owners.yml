@@ -1,0 +1,5 @@
+resource_owners:
+  - uid: xy
+    login_name: matthes
+    email:
+    login_secret_hash: "$6$jkM8vZCi$NT5wXNJdvzoYzL19KD60./hb6a7EfgRsFlMFnFTjrvnla/CBu5zYFe7EDs1lcf4c86tDRN7ZfmcrQKvNMeGL51" # pass: test

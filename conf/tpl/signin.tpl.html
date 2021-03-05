@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>%%title%% :: Sign In</title>
+    <link rel="icon" href="%%iconurl%%"/>
+</head>
+<body>
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<!------ Include the above in your HEAD tag ---------->
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+
+<p></p>
+<div class="container">
+    <h2 class="mt-4 mb-2">%%title%%</h2>
+
+
+    <div class="card bg-light">
+        <div class="row">
+            <div class="col-md-6 col-sm-12">
+
+                <article class="mx-auto" style="max-width: 400px;">
+                    <h4 class="mt-5">Login</h4>
+                    <div class="alert alert-primary" %%ok_msg?:hidden%%>%%ok_msg%%</div>
+                    <div class="alert alert-danger" %%msg?:hidden%%>%%msg%%</div>
+                    <form method="post">
+                        <input type="hidden" name="csrftoken" value="%%csrftoken%%">
+                        <div class="form-group input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                            </div>
+                            <input name="user" value="%%user%%" class="form-control" placeholder="User Name" type="text">
+                        </div> <!-- form-group// -->
+
+                        <div class="form-group input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                            </div>
+                            <input name="passwd" class="form-control" placeholder="Password" type="password">
+                        </div> <!-- form-group// -->
+
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary btn-block">Sign in</button>
+                        </div> <!-- form-group// -->
+                        <p class="text-center"><a href="/resetpw">I lost my password.</a></p>
+                    </form>
+                </article>
+
+            </div>
+            <div class="col-md-6 col-sm-12">
+
+                <article class=" mx-auto" style="max-width: 400px;">
+                    <h4 class="mt-5">New user?</h4>
+                    <p>Sign up for your free account.</p>
+                    <a href="/signup" class="btn btn-secondary">Sign Up</a>
+                </article>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!--container end.//-->
+
+
+
+
+</body>
+</html>

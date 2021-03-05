@@ -1,0 +1,11 @@
+version: 1
+from: "nfra/kickstart-flavor-php:unstable"
+
+packages: [php8.0-curl, php8.0-http, php8.0-raphf]
+
+command:
+  build:
+    - "composer update"
+
+  test:
+    - "vendor/bin/phpunit tests/"

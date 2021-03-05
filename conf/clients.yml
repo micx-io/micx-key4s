@@ -1,0 +1,9 @@
+clients:
+  - client_id: client1
+    client_secret_hashes:
+      - "$some$secret"
+    allow_urls:
+      - "http://localhost"
+      - "https://some.service"
+
+
