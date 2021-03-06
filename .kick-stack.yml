@@ -1,0 +1,19 @@
+version: "3"
+services:
+  couchdb:
+    image: couchdb
+    networks:
+      - micx-key4s
+    environment:
+      COUCHDB_USER: admin
+      COUCHDB_PASSWORD: testtest
+      COUCHDB_SECRET: testtest
+      NODENAME: couchdb1
+  redis:
+    image: redis
+    networks:
+      - micx-key4s
+
+networks:
+  micx-key4s:
+    external: true

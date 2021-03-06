@@ -18,7 +18,9 @@
     "brace/mod-body": "*",
     "brace/mod-router": "*",
     "brace/mod-request-laminas": "*",
-    "lack/oid-server-base": "*"
+    "lack/oid-server-base": "*",
+    "doctrine/couchdb": "2.0.0-alpha1",
+    "phore/misc": "*"
   },
   "require-dev": {
     "phore/tester": "*"

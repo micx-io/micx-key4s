@@ -14,9 +14,12 @@ use Brace\Mod\Request\Zend\BraceRequestLaminasModule;
 use Brace\Router\RouterDispatchMiddleware;
 use Brace\Router\RouterEvalMiddleware;
 use Brace\Router\RouterModule;
+use Doctrine\CouchDB\CouchDBClient;
+use Lack\OidServer\Base\Ctrl\TokenCtrl;
 use Lack\OidServer\Base\OidApp;
 use Micx\Key4s\Key4s;
 use Micx\Key4s\Type\T_TenantConfig;
+use Micx\Key4s\UserManager\RedisTokenManager;
 use Micx\Key4s\UserManager\FileBasedClientManager;
 use Micx\Key4s\UserManager\FileBasedUserManager;
 use Phore\Di\Container\Producer\DiService;
@@ -37,6 +40,23 @@ AppLoader::extend(function () {
     $app->addModule(new RouterModule());
 
     $app->define("app", new DiValue($app));
+
+    $app->define("couchDBClient", new DiService(function () {
+        $client = CouchDBClient::create([
+            "host" => COUCHDB_HOST,
+            "user" => COUCHDB_USER,
+            "pass" => COUCHDB_PASS
+        ]);
+        return $client;
+    }));
+
+    $app->define("redis", new DiService(function () {
+        $redis = new \Redis();
+        $redis->connect("redis");
+        return $redis;
+    }));
+
+    $app->define("tokenManager", new DiService(fn(\Redis $redis) => new RedisTokenManager($redis)));
 
 
     $app->define("resourceOwnerReadManager", new DiService(fn() => new FileBasedUserManager(__DIR__ . "/../conf/resource-owners.yml")));

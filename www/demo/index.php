@@ -4,4 +4,4 @@
 
 ?>
 
-<a href="/authorize?client_id=client1&redirect_uri=http://localhost&response_type=code">Login</a>
+<a href="/authorize?client_id=client1&response_type=code&redirect_uri=http://localhost/demo">Login</a>
