@@ -2,13 +2,6 @@
 
 define("DEV_MODE", (bool)"%DEV_MODE?0%");
 
-define("RUDL_GITDB_URL", "%RUDL_GITDB_URL?%");
-define("RUDL_GITDB_CLIENT_ID", "%RUDL_GITDB_CLIENT_ID?%");
-define("RUDL_GITDB_CLIENT_SECRET", "%RUDL_GITDB_CLIENT_SECRET?%");
+define("PULL_CONFIG_URL", "%PULL_CONFIG_URL?%");
 
 define("DATA_PATH", "%DATA_PATH?/data%");
-
-define("COUCHDB_HOST", "%COUCHDB_HOST%");
-define("COUCHDB_USER", "%COUCHDB_USER%");
-define("COUCHDB_PASS", "%COUCHDB_PASS%");
-define("COUCHDB_DB", "%COUCHDB_DB%");

@@ -20,10 +20,12 @@ use Lack\OidServer\Base\OidApp;
 use Micx\Key4s\Key4s;
 use Micx\Key4s\Type\T_TenantConfig;
 use Micx\Key4s\UserManager\RedisTokenManager;
-use Micx\Key4s\UserManager\FileBasedClientManager;
-use Micx\Key4s\UserManager\FileBasedUserManager;
+use Micx\Key4s\UserManager\ClientManager;
+use Micx\Key4s\UserManager\UserManager;
 use Phore\Di\Container\Producer\DiService;
 use Phore\Di\Container\Producer\DiValue;
+use Phore\UniDb\UniDb;
+use Phore\UniDb\UniDbConfig;
 use Phore\VCS\Git\SshGitRepository;
 use Phore\VCS\VcsFactory;
 use Rudl\GitDb\AccessChecker;
@@ -41,13 +43,10 @@ AppLoader::extend(function () {
 
     $app->define("app", new DiValue($app));
 
-    $app->define("couchDBClient", new DiService(function () {
-        $client = CouchDBClient::create([
-            "host" => COUCHDB_HOST,
-            "user" => COUCHDB_USER,
-            "pass" => COUCHDB_PASS
-        ]);
-        return $client;
+
+
+    $app->define("uniDb", new DiService(function() {
+        return UniDbConfig::get();
     }));
 
     $app->define("redis", new DiService(function () {
@@ -59,9 +58,8 @@ AppLoader::extend(function () {
     $app->define("tokenManager", new DiService(fn(\Redis $redis) => new RedisTokenManager($redis)));
 
 
-    $app->define("resourceOwnerReadManager", new DiService(fn() => new FileBasedUserManager(__DIR__ . "/../conf/resource-owners.yml")));
-    $app->define("clientReadManager", new DiService(fn() => new FileBasedClientManager(__DIR__ . "/../conf/clients.yml")));
+    $app->define("userReadManager", new DiService(fn(UniDb $uniDb) => new UserManager($uniDb)));
+    $app->define("clientReadManager", new DiService(fn(UniDb $uniDb) => new ClientManager($uniDb)));
 
-    $app->define("tenantConfig", new DiService(fn() => phore_file(__DIR__ . "/../conf/tenant-config.yml")->hydrate(T_TenantConfig::class)));
     return $app;
 });

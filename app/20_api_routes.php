@@ -19,7 +19,7 @@ AppLoader::extend(function (BraceApp $app) {
     $app->router->on("POST@/oauth/token", new TokenCtrl());
 
     $app->router->on("GET|POST@/signin", new SignInCtrl(
-        new HtmlTemplate(__DIR__ . "/../conf/tpl/signin.tpl.html")
+        new HtmlTemplate(__DIR__ . "/../tpl/signin.tpl.html")
     ));
 
     $app->router->on("GET@/signout", new SignOutCtrl());

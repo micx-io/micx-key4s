@@ -1,17 +1,21 @@
 <?php
 
 
-namespace Micx\Key4s\Type;
+namespace Micx\Key4s\Entity;
 
 
-use Lack\OidServer\Base\Manager\ClientInterface;
+use Lack\OidServer\Base\Interface\ClientInterface;
+use Phore\UniDb\Attribute\UniDbColumn;
+use Phore\UniDb\Attribute\UniDbEntity;
 
-class T_Client implements ClientInterface
+#[UniDbEntity(json_data_col: "data")]
+class Client implements ClientInterface
 {
 
     /**
      * @var string
      */
+    #[UniDbColumn(primaryKey: true)]
     public $client_id;
 
     /**

@@ -19,7 +19,8 @@
     "brace/mod-router": "*",
     "brace/mod-request-laminas": "*",
     "lack/oid-server-base": "*",
-    "doctrine/couchdb": "2.0.0-alpha1",
+    "phore/unidb": "*",
+    "phore/hydrator": "*",
     "phore/misc": "*"
   },
   "require-dev": {
@@ -32,10 +33,14 @@
       "Micx\\Key4s\\": "src/"
     },
     "files": [
+      "unidb.php"
     ]
   },
   "autoload-dev": {
     "psr-4": { "Phore\\Tests\\": "tests/" }
   },
-  "minimum-stability": "dev"
+  "minimum-stability": "dev",
+  "config": {
+    "preferred-install": "source"
+  }
 }

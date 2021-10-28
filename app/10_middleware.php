@@ -12,6 +12,7 @@ use Brace\Core\BraceApp;
 use Brace\Router\RouterDispatchMiddleware;
 use Brace\Router\RouterEvalMiddleware;
 use Brace\Session\SessionMiddleware;
+use Brace\Session\Storages\CookieSessionStorage;
 use Brace\Session\Storages\FileSessionStorage;
 
 
@@ -19,7 +20,7 @@ AppLoader::extend(function (BraceApp $app) {
 
     $app->setPipe([
         new ExceptionHandlerMiddleware(),
-        new SessionMiddleware(new FileSessionStorage("/tmp")),
+        new SessionMiddleware(new CookieSessionStorage("SECRET_KEY_ABCDEFG_ABCDEDF")),
         new RouterEvalMiddleware(),
         new BodyMiddleware(),
         new RouterDispatchMiddleware([
