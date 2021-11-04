@@ -38,7 +38,7 @@ use Rudl\GitDb\State;
 use Rudl\Vault\Lib\Config;
 use Rudl\Vault\Lib\KeyVault;
 
-BraceDbg::SetupEnvironment(true, ["192.168.178.20", "localhost"]);
+BraceDbg::SetupEnvironment(true, ["192.168.178.20", "localhost", "localhost:8080"]);
 
 
 
