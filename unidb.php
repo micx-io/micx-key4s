@@ -12,7 +12,7 @@ use Phore\UniDb\UniDbConfig;
 
 UniDbConfig::define("sqlite:/data/key4s.db3", [
     User::class, Grp::class, Client::class, Org::class, MapUserGroup::class
-], autocreate_schema: true);
+], autocreate_schema: false);
 
 UniDbConfig::defineIO([
     User::class => new OneFilePerEntityIoStrategy(filenameColumn: "user"),

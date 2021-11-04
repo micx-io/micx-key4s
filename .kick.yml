@@ -15,9 +15,11 @@ command:
 
 
   run:
+    - "unidbcli create_schema"
     - "unidbcli import /opt/conf"
 
   dev:
+    - "unidbcli create_schema"
     - "unidbcli import /opt/conf"
 
   test:
