@@ -1,5 +1,5 @@
-FROM nfra/kickstart-flavor-php:unstable
-ENV DEV_CONTAINER_NAME="your-project-name"
+FROM ghcr.io/nfra-project/kickstart-flavor-php:unstable
+ENV DEV_CONTAINER_NAME="key4s"
 ENV DATA_PATH="/data"
 
 ADD / /opt
