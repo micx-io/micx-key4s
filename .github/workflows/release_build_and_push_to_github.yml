@@ -28,5 +28,3 @@ jobs:
           CI_REGISTRY_USER: giblab-user
           CI_REGISTRY_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
 
-
-
