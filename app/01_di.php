@@ -10,6 +10,7 @@ use Brace\Core\Base\ExceptionHandlerMiddleware;
 use Brace\Core\Base\JsonReturnFormatter;
 use Brace\Core\Base\NotFoundMiddleware;
 use Brace\Core\BraceApp;
+use Brace\Dbg\BraceDbg;
 use Brace\Mod\Request\Zend\BraceRequestLaminasModule;
 use Brace\Router\RouterDispatchMiddleware;
 use Brace\Router\RouterEvalMiddleware;
@@ -18,6 +19,8 @@ use Doctrine\CouchDB\CouchDBClient;
 use Lack\OidServer\Base\Ctrl\TokenCtrl;
 use Lack\OidServer\Base\OidApp;
 use Micx\Key4s\Key4s;
+use Micx\Key4s\Manager\ClaimsManager;
+use Micx\Key4s\Manager\JwtManagerFirebase;
 use Micx\Key4s\Type\T_TenantConfig;
 use Micx\Key4s\UserManager\RedisTokenManager;
 use Micx\Key4s\UserManager\ClientManager;
@@ -35,6 +38,9 @@ use Rudl\GitDb\State;
 use Rudl\Vault\Lib\Config;
 use Rudl\Vault\Lib\KeyVault;
 
+BraceDbg::SetupEnvironment(true, ["192.168.178.20", "localhost"]);
+
+
 
 AppLoader::extend(function () {
     $app = new OidApp();
@@ -43,11 +49,13 @@ AppLoader::extend(function () {
 
     $app->define("app", new DiValue($app));
 
-
-
     $app->define("uniDb", new DiService(function() {
         return UniDbConfig::get();
     }));
+
+    $app->define("jwtBuilder", new DiService(fn () => new JwtManagerFirebase("abcd", "HS256")));
+
+    $app->define("claimsManager", new DiService(fn() => new ClaimsManager()));
 
     $app->define("redis", new DiService(function () {
         $redis = new \Redis();

@@ -7,7 +7,7 @@ use Brace\Core\AppLoader;
 use Brace\Core\BraceApp;
 use Lack\OidServer\Base\Ctrl\AuthorizeCtrl;
 use Lack\OidServer\Base\Ctrl\SignInCtrl;
-use Lack\OidServer\Base\Ctrl\SignOutCtrl;
+use Lack\OidServer\Base\Ctrl\LogoutCtrl;
 use Lack\OidServer\Base\Ctrl\TokenCtrl;
 use Lack\OidServer\Base\Tpl\HtmlTemplate;
 
@@ -22,6 +22,6 @@ AppLoader::extend(function (BraceApp $app) {
         new HtmlTemplate(__DIR__ . "/../tpl/signin.tpl.html")
     ));
 
-    $app->router->on("GET@/signout", new SignOutCtrl());
+    $app->router->on("GET@/logout", new LogoutCtrl());
 
 });

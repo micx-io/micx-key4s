@@ -15,5 +15,6 @@ UniDbConfig::define("sqlite:/data/key4s.db3", [
 ], autocreate_schema: true);
 
 UniDbConfig::defineIO([
-    User::class => new OneFilePerEntityIoStrategy(filenameColumn: "user")
+    User::class => new OneFilePerEntityIoStrategy(filenameColumn: "user"),
+    Client::class => new OneFilePerEntityIoStrategy(filenameColumn: "client_id")
 ]);

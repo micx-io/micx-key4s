@@ -10,7 +10,7 @@ use Phore\UniDb\Attribute\UniDbEntity;
 use Phore\UniDb\Attribute\UniDbIndex;
 use Phore\UniDb\Schema\Index;
 
-#[UniDbEntity()]
+#[UniDbEntity(pk: "uid")]
 #[UniDbIndex(cols: ["user"], type: Index::TYPE_UNIQUE)]
 #[UniDbIndex(cols: ["email"], type: Index::TYPE_UNIQUE)]
 class User implements UserInterface

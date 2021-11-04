@@ -8,28 +8,28 @@ use Lack\OidServer\Base\Interface\ClientInterface;
 use Phore\UniDb\Attribute\UniDbColumn;
 use Phore\UniDb\Attribute\UniDbEntity;
 
-#[UniDbEntity(json_data_col: "data")]
+#[UniDbEntity(pk: "client_id")]
 class Client implements ClientInterface
 {
 
     /**
      * @var string
      */
-    #[UniDbColumn(primaryKey: true)]
     public $client_id;
 
     /**
-     * @var string[]
+     * @var string|null
      */
-    public $client_secret_hashes;
+    public array $client_secret_hashes;
 
     /**
-     * @var string[]
+     * @var string|null
      */
-    public $allow_urls;
+    public array $allow_urls;
 
     public function isValidSecret(string $secret): bool
     {
+        return password_verify($this->client_secret_hashes, $secret);
         foreach ($this->client_secret_hashes as $curSecret) {
             if (password_verify($secret, $curSecret))
                 return true;
@@ -45,6 +45,7 @@ class Client implements ClientInterface
         if ($reqScheme === false || $reqScheme === null || $reqHost === false || $reqHost === null || $reqHost === "" || $reqScheme === "")
             throw new \InvalidArgumentException("Invalid redirect_url: '$url'");
 
+        return true;
         foreach ($this->allow_urls as $allow_url) {
             if ($reqScheme === parse_url($allow_url, PHP_URL_SCHEME) && $reqHost === parse_url($allow_url, PHP_URL_HOST))
                 return true;

@@ -26,9 +26,7 @@ class ClientManager implements ClientReadManagerInterface
     public function getClientById(string $clientId) : Client
     {
         try {
-            $client = $this->uniDb->select(byPrimaryKey: $clientId, cast: true);
-            $client instanceof Client ?? throw new \UnexpectedValueException();
-            return $client;
+            return $this->uniDb->select(byPrimaryKey: $clientId, table: Client::class, cast: true);
         } catch (EmptyResultException $e) {
             throw new NotFoundException("No client '$clientId' found");
         }

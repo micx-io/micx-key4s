@@ -14,6 +14,11 @@ command:
     - "sudo mkdir /data && sudo chmod 777 /data"
 
 
+  run:
+    - "unidbcli import /opt/conf"
+
+  dev:
+    - "unidbcli import /opt/conf"
 
   test:
     - "vendor/bin/phpunit tests/"
