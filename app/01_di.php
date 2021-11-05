@@ -19,7 +19,7 @@ use Doctrine\CouchDB\CouchDBClient;
 use Lack\OidServer\Base\Ctrl\TokenCtrl;
 use Lack\OidServer\Base\OidApp;
 use Micx\Key4s\Key4s;
-use Micx\Key4s\Manager\ClaimsManager;
+use Micx\Key4s\Manager\ClaimManager;
 use Micx\Key4s\Manager\JwtManagerFirebase;
 use Micx\Key4s\Type\T_TenantConfig;
 use Micx\Key4s\UserManager\RedisTokenManager;
@@ -54,7 +54,9 @@ AppLoader::extend(function () {
 
     $app->define("jwtBuilder", new DiService(fn () => new JwtManagerFirebase("abcd", "HS256")));
 
-    $app->define("claimsManager", new DiService(fn() => new ClaimsManager()));
+    $app->define("claimManager", new DiService(fn() => new ClaimManager(
+        iss: "http://localhost",token_ttl: 1800
+    )));
 
     $app->define("redis", new DiService(function () {
         $redis = new \Redis();

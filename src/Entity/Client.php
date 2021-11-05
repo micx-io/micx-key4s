@@ -27,6 +27,12 @@ class Client implements ClientInterface
      */
     public array $allow_urls;
 
+
+    public function getClientId(): string
+    {
+        return $this->client_id;
+    }
+
     public function isValidSecret(string $secret): bool
     {
         return password_verify($this->client_secret_hashes, $secret);
